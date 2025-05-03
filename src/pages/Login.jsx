@@ -8,26 +8,34 @@ const Login = () => {
 				
                 <h2 className="text-center text-2xl font-semibold mt-5">Login to your account</h2>
                 <div className="card-body">
-					<fieldset className="fieldset">
-						<label className="label">Email</label>
-						<input
-							type="email"
-							className="input"
-							placeholder="Email"
-						/>
-						<label className="label">Password</label>
-						<input
-							type="password"
-							className="input"
-							placeholder="Password"
-						/>
+					<form className="space-y-2">
+						
+                        {/* email */}
+                        <label className="label">Email</label>
+                                <input
+                                    type="email"
+                                    name="email"
+                                    className="input"
+                                    placeholder="Email"
+                                    required
+                                />
+                                
+                                {/* password */}
+                                <label className="label">Password</label>
+                                <input
+                                    type="password"
+                                    name="password"
+                                    className="input"
+                                    placeholder="Password"
+                                    required
+                                />
 						<div>
 							<a className="link link-hover">Forgot password?</a>
 						</div>
-						<button className="btn btn-neutral mt-4">Login</button>
+						<button className="btn btn-neutral mt-4" type="submit">Login</button>
                         
                         <p className="text-center text-sm font-semibold pt-5" >Don't have an account? <Link to="/auth/register" className="text-secondary ">Register</Link> </p>
-					</fieldset>
+					</form>
 
 
 				</div>

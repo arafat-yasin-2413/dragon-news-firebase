@@ -1,20 +1,42 @@
-import React, { createContext, useState } from 'react';
-
-
+import React, { createContext, useEffect, useState } from 'react';
+import app from '../firebase/firebase.config';
 export const AuthContext = createContext();
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged } from 'firebase/auth';
 
+const auth = getAuth( app );
 const AuthProvider = ({ children }) => {
+    const [user, setUser] = useState(null)
+    
+    
+    const createUser=(email, password)=>{
+        return createUserWithEmailAndPassword(auth, email, password)
+        
+    }
 
 
-    const [user, setUser] = useState({
-        name: 'Hablu Khan',
-        email: 'hablu@dablu.com',
-    })
 
+    useEffect(()=>{
+        const unsubscribe = 
+        onAuthStateChanged(auth, (currentUser)=>{
+            setUser(currentUser)
+        });
+        return ()=>{}
+    },[])
+    
+    
+    
+    
     const authData = {
         user,
         setUser,
+        createUser,
     }
+
+
+
+    console.log(user);
+
+
 
     return (
         <AuthContext value={authData}>
