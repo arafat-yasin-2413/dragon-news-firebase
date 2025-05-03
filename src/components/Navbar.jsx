@@ -8,9 +8,20 @@ import { AuthContext } from "../providers/AuthProvider";
 
 const Navbar = () => {
 
-    const { user } = use(AuthContext);
+    const { user, logoutUser } = use(AuthContext);
     console.log(user);
     
+
+    const handleLogout=()=>{
+        // alert('handle logout clicked');
+        logoutUser()
+        .then(result=>{
+            alert('You Logged Out Successfully')
+        })
+        .catch(error=>{
+            console.log(error);
+        })
+    }
 
 
   return (
@@ -27,7 +38,11 @@ const Navbar = () => {
       </div>
       <div className="login-btn flex gap-5">
         <img src={userIcon} alt="" />
-        <Link to="/auth/login" className="btn btn-primary px-10 ">Login</Link>
+
+        {
+            user ? <Link onClick={handleLogout} className="btn btn-primary px-10">Logout</Link> :  <Link to="/auth/login" className="btn btn-primary px-10 ">Login</Link>
+        
+        }
       </div>
     </div>
   );
