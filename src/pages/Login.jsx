@@ -1,13 +1,18 @@
-import React, { use } from "react";
-import { Link } from "react-router";
+import React, { use, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../providers/AuthProvider";
 
 
 
 
 const Login = () => {
-
+    const [error, setError] = useState("")
     const { setUser ,loginUser } = use(AuthContext);
+
+    const location = useLocation();
+    console.log('location from login : ', location);
+
+    const navigate = useNavigate(); // returns a function
 
     const handleLogin=(e)=>{
         e.preventDefault();
@@ -17,19 +22,21 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
 
-        console.log(email);
-        console.log(password);
+        // console.log(email);
+        // console.log(password);
 
         loginUser(email,password)
         .then(result=>{
             const user = result.user;
             console.log('user login koriche : ', user);
+            navigate(`${location.state ? location.state : '/'}`)
         })
         .catch((error)=>{
             const errorCode = error.code;
-            const errorMessage = error.message;
+            // const errorMessage = error.message;
 
-            alert(errorCode, errorMessage)
+            // alert(errorCode, errorMessage)
+            setError(errorCode);
         })
     }
 
@@ -64,6 +71,14 @@ const Login = () => {
 						<div>
 							<a className="link link-hover">Forgot password?</a>
 						</div>
+
+
+                        {   
+                            error && <p className=" rounded-md px-3 py-2 text-red-500 font-semibold bg-base-200 w-fit shadow-xl">{error}</p> 
+                        
+                        }
+
+
 						<button className="btn btn-neutral mt-4" type="submit">Login</button>
                         
                         <p className="text-center text-sm font-semibold pt-5" >Don't have an account? <Link to="/auth/register" className="text-secondary ">Register</Link> </p>
