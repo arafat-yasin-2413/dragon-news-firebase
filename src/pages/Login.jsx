@@ -10,7 +10,7 @@ const Login = () => {
     const { setUser ,loginUser } = use(AuthContext);
 
     const location = useLocation();
-    console.log('location from login : ', location);
+    // console.log('location from login : ', location);
 
     const navigate = useNavigate(); // returns a function
 
@@ -28,7 +28,7 @@ const Login = () => {
         loginUser(email,password)
         .then(result=>{
             const user = result.user;
-            console.log('user login koriche : ', user);
+            // console.log('user login koriche : ', user);
             navigate(`${location.state ? location.state : '/'}`)
         })
         .catch((error)=>{
