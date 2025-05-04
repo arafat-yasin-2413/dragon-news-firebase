@@ -4,7 +4,8 @@ import Header from "../components/Header";
 import LatestNews from "../components/LatestNews";
 import Navbar from "../components/Navbar";
 import LeftAside from "../components/homelayout/LeftAside";
-import RighAside from "../components/homelayout/RighAside";
+import RightAside from "../components/homelayout/RightAside";
+
 
 const HomeLayout = () => {
   return (
@@ -26,7 +27,7 @@ const HomeLayout = () => {
           <Outlet></Outlet>
         </section>
         <aside className="col-span-3 sticky h-fit top-2">
-          <RighAside></RighAside>
+          <RightAside></RightAside>
         </aside>
       </main>
     </div>
