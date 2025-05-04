@@ -15,6 +15,7 @@ const NewsDetails = () => {
     const {id} = useParams()
     // console.log(id);
 
+    // console.log(news);
 
     useEffect(()=>{
         
@@ -27,8 +28,9 @@ const NewsDetails = () => {
 
 	return (
 		<div>
-			<header>
+			<header className="w-11/12 mx-auto">
 				<Header></Header>
+                <Navbar></Navbar>
 			</header>
 
             <main className="w-11/12 mx-auto grid grid-cols-12 gap-5 py-10">
